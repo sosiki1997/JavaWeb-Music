@@ -1,4 +1,6 @@
-本项目来源于https://github.com/Yin-Hongwei/music-website。一切版权归原作者@*[Yin-Hongwei](https://github.com/Yin-Hongwei)*所有
+本项目来源于https://github.com/Yin-Hongwei/music-website
+
+一切版权归原作者@*[Yin-Hongwei](https://github.com/Yin-Hongwei)*所有
 
 [教学视频](https://www.bilibili.com/video/BV1Ck4y127cg?p=1&vd_source=7bbb95f0a4a6f4f051cb193b8898b1a4)
 
