@@ -66,13 +66,23 @@ public class SongServiceImpl implements SongService {
     }
 
     /**
-     * 根据歌曲名字模糊查询列表
+     * 根据歌曲名字精确查询列表
      *
      * @param name
      */
     @Override
     public List<Song> songOfName(String name) {
         return songMapper.songOfName(name);
+    }
+
+    /**
+     * 根据歌曲名字模糊查询列表
+     *
+     * @param name
+     */
+    @Override
+    public List<Song> likeSongOfName(String name) {
+        return songMapper.likeSongOfName("%"+name+"%");
     }
 
     /**

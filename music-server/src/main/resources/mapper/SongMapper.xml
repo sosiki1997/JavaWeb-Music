@@ -137,6 +137,14 @@
         where name = #{name}
     </select>
 
+    <!-- 根据歌手名字模糊查询 -->
+    <select id="likeSongOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List" />
+        from song
+        where name like #{name}
+    </select>
+
     <!-- 根据性别查询 -->
     <select id="songOfSingerId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select

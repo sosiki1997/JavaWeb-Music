@@ -85,6 +85,13 @@
         width="100"
         align="center"
       ></el-table-column>
+      <el-table-column label="收藏" width="80" align="center">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="getCollect(scope.row.id)"
+            >收藏</el-button
+          >
+        </template>
+      </el-table-column>
 
       <el-table-column label="操作" width="150" align="center">
         <template slot-scope="scope">
@@ -493,6 +500,10 @@ export default {
           console.log(err);
         });
       this.delVisible = false;
+    },
+    // 转向该用户的收藏列表
+    getCollect(id) {
+      this.$router.push({ path: "/collect", query: { id } });
     }
   }
 };

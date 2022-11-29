@@ -1,7 +1,6 @@
 package com.zz.music.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zz.music.domain.Singer;
 import com.zz.music.domain.Song;
 import com.zz.music.service.SongService;
 import com.zz.music.utils.Consts;
@@ -15,10 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 歌曲管理controller
@@ -249,15 +244,24 @@ public class SongController {
         String songId = request.getParameter("songId");
         return songService.selectByPrimaryKey(Integer.parseInt(songId));
     }
-
     /**
-     * 根据歌手id查询歌曲对象
+     * 根据歌手名字精确查询歌曲对象
      */
-    @RequestMapping(value = "/songOfSongrName", method = RequestMethod.GET)
-    public Object songOfSongrName(HttpServletRequest request){
+    @RequestMapping(value = "/songOfSingerName", method = RequestMethod.GET)
+    public Object songOfSingerName(HttpServletRequest request){
         /* 获取前端传来的参数 */
         String songName = request.getParameter("songName");
         return songService.songOfName(songName);
+    }
+
+    /**
+     * 根据歌手名字模糊查询歌曲对象
+     */
+    @RequestMapping(value = "/likeSongOfName", method = RequestMethod.GET)
+    public Object likeSongOfName(HttpServletRequest request){
+        /* 获取前端传来的参数 */
+        String songName = request.getParameter("songName");
+        return songService.likeSongOfName(songName);
     }
 
     /**

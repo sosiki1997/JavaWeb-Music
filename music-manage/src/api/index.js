@@ -77,6 +77,12 @@ export const updateConsumer = params => post(`consumer/update`, params);
 // 删除用户
 export const delConsumer = id => get(`consumer/delete?id=${id}`);
 
-// // =======================> 收藏列表 API
+// =======================> 收藏 API
+// 指定用户ID的收藏列表
+export const getCollectionOfUser = userId =>
+  get(`collect/collectOfUserId?userId=${userId}`);
+// 删除用户收藏的歌曲
+export const deleteCollection = (userId, songId) =>
+  get(`collect/delete?userId=${userId}&songId=${songId}`);
 
 // // =======================> 评论列表 API

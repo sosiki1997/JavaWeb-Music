@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zz.music.dao.CollectMapper">
+    <resultMap id="BaseResultMap" type="com.zz.music.domain.Collect">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="song_id" jdbcType="INTEGER" property="songId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <!-- 查询竖列 -->
+    <sql id="Base_Column_List">
+        id, user_id, type, song_id,create_time
+    </sql>
+
+    <!-- 增加 -->
+    <insert id="insert" parameterType="com.zz.music.domain.Collect">
+        insert into collect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="songId != null">
+                song_id,
+            </if>
+            create_time,
+
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="songId != null">
+                #{songId},
+            </if>
+            now(),
+        </trim>
+    </insert>
+
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from collect
+        where id=#{id}
+    </delete>
+
+    <!-- 根据用户id删除 -->
+    <delete id="deleteByUserIdSongId" parameterType="java.lang.Integer">
+        delete from collect
+        where user_id = #{userId} and song_id = #{songId}
+    </delete>
+
+
+
+    <!-- 查询所有评论 -->
+    <select id="allCollect" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from collect
+    </select>
+
+    <!-- 根据用户id查询收藏列表 -->
+    <select id="collectOfUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from collect
+        where user_id = #{userId}
+    </select>
+
+    <!-- 根据用户id查询是否已经收藏了某个歌曲 -->
+    <select id="existSongId" resultType="java.lang.Integer">
+        select count(*)
+        from collect
+        where user_id = #{userId} and song_id = #{songId}
+    </select>
+</mapper>
