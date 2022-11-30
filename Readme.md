@@ -96,7 +96,7 @@ IDE：IntelliJ IDEA 2020、VSCode
 
 ### 问题三：
 
-- **发现歌曲突然不能播放了，报错：**
+- 做播放器功能的时候歌曲播放完全没有问题，但后面**突然发现歌曲突然不能播放了，报错：**
 
   Uncaught (in promise) DOMException: The element has no supported sources. #2
 
